@@ -1,12 +1,8 @@
 vim.g.barbar_auto_setup = false -- disable auto-setup
 
 require'barbar'.setup {
-  -- WARN: do not copy everything below into your config!
-  --       It is just an example of what configuration options there are.
-  --       The defaults are suitable for most people.
-
   -- Enable/disable animations
-  animation = true,
+  animation = false,
 
   -- Automatically hide the tabline when there are this many buffers left.
   -- Set to any value >=0 to enable.
@@ -29,7 +25,7 @@ require'barbar'.setup {
   focus_on_close = 'left',
 
   -- Hide inactive buffers and file extensions. Other options are `alternate`, `current`, and `visible`.
-  hide = {extensions = true, inactive = true},
+  -- hide = {extensions = true, inactive = true},
 
   -- Disable highlighting alternate buffers
   highlight_alternate = false,
@@ -89,7 +85,7 @@ require'barbar'.setup {
 
   -- If true, new buffers will be inserted at the start/end of the list.
   -- Default is to insert after current buffer.
-  insert_at_end = false,
+  insert_at_end = true,
   insert_at_start = false,
 
   -- Sets the maximum padding width with which to surround each tab
