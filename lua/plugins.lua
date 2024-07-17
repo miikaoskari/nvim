@@ -2,6 +2,8 @@ require("lazy").setup({
     -- git
     "tpope/vim-fugitive",
     "tpope/vim-rhubarb",
+    "lewis6991/gitsigns.nvim",
+
     -- file tree
     "nvim-tree/nvim-tree.lua",
     -- telescope
@@ -16,7 +18,7 @@ require("lazy").setup({
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "zbirenbaum/copilot.lua",
-        }
+        },
     },
     -- cmp
     {
@@ -26,6 +28,10 @@ require("lazy").setup({
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "zbirenbaum/copilot-cmp",
-        }
+        },
+    },
+    -- treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
     },
 }, {})
