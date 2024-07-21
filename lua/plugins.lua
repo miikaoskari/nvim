@@ -1,4 +1,6 @@
 require("lazy").setup({
+    -- color
+    "rebelot/kanagawa.nvim",
     -- git
     "tpope/vim-fugitive",
     "tpope/vim-rhubarb",
@@ -28,6 +30,8 @@ require("lazy").setup({
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "zbirenbaum/copilot-cmp",
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
         },
     },
     -- treesitter
