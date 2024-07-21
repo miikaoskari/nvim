@@ -18,6 +18,13 @@ cmp.setup({
       { name = "copilot"},
       { name = "luasnip" },
     },
+    window = {
+      completion = cmp.config.window.bordered(), -- Add borders to the completion window
+      documentation = cmp.config.window.bordered(), -- Add borders to the documentation window
+    },
+    experimental = {
+      ghost_text = true, -- Enable ghost text
+    },
     mapping = cmp.mapping.preset.insert({
         -- C = control
         -- Select the [n]ext item

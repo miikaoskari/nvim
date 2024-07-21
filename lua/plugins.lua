@@ -7,7 +7,10 @@ require("lazy").setup({
     "lewis6991/gitsigns.nvim",
 
     -- file tree
-    "nvim-tree/nvim-tree.lua",
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = { "nvim-tree/nvim-web-devicons" }
+    },
     -- telescope
     {
         "nvim-telescope/telescope.nvim", tag = "0.1.6",
@@ -37,5 +40,10 @@ require("lazy").setup({
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
+    },
+    -- bars
+    {
+        "romgrk/barbar.nvim",
+        "nvim-lualine/lualine.nvim",
     },
 }, {})
