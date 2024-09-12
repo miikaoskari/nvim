@@ -1,22 +1,22 @@
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
-
-require("nvim-tree").setup({
-  sort = {
-    sorter = "case_sensitive",
+return {
+  'nvim-neo-tree/neo-tree.nvim',
+  version = '*',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    'MunifTanjim/nui.nvim',
   },
-  view = {
-    width = 30,
+  cmd = 'Neotree',
+  keys = {
+    { 'ee', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
-  renderer = {
-    group_empty = true,
+  opts = {
+    filesystem = {
+      window = {
+        mappings = {
+          ['ee'] = 'close_window',
+        },
+      },
+    },
   },
-  filters = {
-    dotfiles = false,
-  },
-  git = {
-    enable = true,
-    ignore = false,
-  },
-})
+}
