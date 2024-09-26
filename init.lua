@@ -400,7 +400,9 @@ require('lazy').setup({
         -- gopls = {},
         pyright = {},
         rust_analyzer = {},
-        asm_lsp = {},
+        asm_lsp = {
+          filetypes = { 'asm', 's', 'S' },
+        },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -439,6 +441,8 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'asmfmt', -- Used to format Assembly code
+        'clang-format', -- Used to format C code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
