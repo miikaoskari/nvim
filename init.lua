@@ -788,6 +788,12 @@ require('lazy').setup({
         return '%2l:%-2v'
       end
 
+      -- Pair brackets, quotes, etc.
+      require('mini.pairs').setup()
+
+      -- Add a tabline at the top of the window
+      require('mini.tabline').setup()
+
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
@@ -817,7 +823,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   require 'tree',
-  require 'bars',
+  -- require 'bars',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
 }, {
