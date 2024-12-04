@@ -182,6 +182,7 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>a', group = '[A]i Help'},
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
@@ -190,6 +191,7 @@ require('lazy').setup({
   {
     {'akinsho/toggleterm.nvim', version = "*", config = true},
     vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm<CR>', {desc = '[T]oggle [T]erminal'});
+    vim.keymap.set('n', '<leader>tft', '<cmd>ToggleTerm direction=float<CR>', {desc = '[F]loating [T]erminal'});
   },
 
   { -- Fuzzy Finder (files, lsp, etc)
@@ -290,7 +292,7 @@ require('lazy').setup({
           local actions = require("CopilotChat.actions")
           require("CopilotChat.integrations.telescope").pick(actions.help_actions())
         end,
-        desc = "CopilotChat - Help actions",
+        desc = "[H]elp actions",
       },
       -- Show prompts actions with telescope
       {
@@ -299,32 +301,32 @@ require('lazy').setup({
           local actions = require("CopilotChat.actions")
           require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
         end,
-        desc = "CopilotChat - Prompt actions",
+        desc = "[P]rompt actions",
       },
       {
         "<leader>ap",
         ":lua require('CopilotChat.integrations.telescope').pick(require('CopilotChat.actions').prompt_actions({selection = require('CopilotChat.select').visual}))<CR>",
         mode = "x",
-        desc = "CopilotChat - Prompt actions",
+        desc = "[P]rompt actions",
       },
       -- Code related commands
-      { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-      { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
-      { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
-      { "<leader>aR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
-      { "<leader>an", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
+      { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "[E]xplain code" },
+      { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "Generate [t]ests" },
+      { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "[R]eview code" },
+      { "<leader>aR", "<cmd>CopilotChatRefactor<cr>", desc = "[R]efactor code" },
+      { "<leader>an", "<cmd>CopilotChatBetterNamings<cr>", desc = "Better [n]aming" },
       -- Chat with Copilot in visual mode
       {
         "<leader>av",
         ":CopilotChatVisual",
         mode = "x",
-        desc = "CopilotChat - Open in vertical split",
+        desc = "Open in [v]ertical split",
       },
       {
         "<leader>ax",
         ":CopilotChatInline<cr>",
         mode = "x",
-        desc = "CopilotChat - Inline chat",
+        desc = "Inline chat",
       },
       -- Custom input for CopilotChat
       {
@@ -335,18 +337,18 @@ require('lazy').setup({
             vim.cmd("CopilotChat " .. input)
           end
         end,
-        desc = "CopilotChat - Ask input",
+        desc = "Ask [i]nput",
       },
       -- Generate commit message based on the git diff
       {
         "<leader>am",
         "<cmd>CopilotChatCommit<cr>",
-        desc = "CopilotChat - Generate commit message for all changes",
+        desc = "Commit [m]essage for all changes",
       },
       {
         "<leader>aM",
         "<cmd>CopilotChatCommitStaged<cr>",
-        desc = "CopilotChat - Generate commit message for staged changes",
+        desc = "Generate commit [M]essage for staged changes",
       },
       -- Quick chat with Copilot
       {
@@ -357,18 +359,18 @@ require('lazy').setup({
             vim.cmd("CopilotChatBuffer " .. input)
           end
         end,
-        desc = "CopilotChat - Quick chat",
+        desc = "[Q]uick chat",
       },
       -- Debug
-      { "<leader>ad", "<cmd>CopilotChatDebugInfo<cr>", desc = "CopilotChat - Debug Info" },
+      { "<leader>ad", "<cmd>CopilotChatDebugInfo<cr>", desc = "[D]ebug Info" },
       -- Fix the issue with diagnostic
-      { "<leader>af", "<cmd>CopilotChatFixDiagnostic<cr>", desc = "CopilotChat - Fix Diagnostic" },
+      { "<leader>af", "<cmd>CopilotChatFixDiagnostic<cr>", desc = "[F]ix Diagnostic" },
       -- Clear buffer and chat history
-      { "<leader>al", "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Clear buffer and chat history" },
+      { "<leader>al", "<cmd>CopilotChatReset<cr>", desc = "Clear buffer and chat history" },
       -- Toggle Copilot Chat Vsplit
-      { "<leader>av", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
+      { "<leader>av", "<cmd>CopilotChatToggle<cr>", desc = "Toggle [v]ertical" },
       -- Copilot Chat Models
-      { "<leader>a?", "<cmd>CopilotChatModels<cr>", desc = "CopilotChat - Select Models" },
+      { "<leader>a?", "<cmd>CopilotChatModels<cr>", desc = "Select Models" },
     },
   },
 
