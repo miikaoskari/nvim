@@ -2,14 +2,11 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
+-- add this stupid global to disable stupid autoformat
+vim.g.zig_fmt_autosave = false
+
 -- Make line numbers default
 vim.opt.number = true
-
--- set tabstop to 4
--- vim.opt.tabstop = 4
-
--- soft tabs
--- vim.opt.expandtab = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -22,9 +19,27 @@ vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
--- Fold based on syntax
-vim.opt.foldmethod = 'syntax'
+-- Fold based on treesitter
+vim.opt.foldcolumn = "0"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldnestmax = 3
 vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
+-- functions for closing/opening all folds
+local function close_all_folds()
+  vim.api.nvim_exec2("%foldc!", { output = false })
+end
+local function open_all_folds()
+  vim.api.nvim_exec2("%foldo!", { output = false })
+end
+
+-- Set keymaps for fold actions
+vim.keymap.set("n", "<leader>zs", close_all_folds, { desc = "[s]hut all folds" })
+vim.keymap.set("n", "<leader>zO", open_all_folds, { desc = "[O]pen all folds" })
+vim.keymap.set("n", "<leader>zc", "<cmd>foldclose<CR>", { desc = "[c]lose fold" })
+vim.keymap.set("n", "<leader>zo", "<cmd>foldopen<CR>", { desc = "[o]pen fold" })
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -119,6 +134,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+  'tpope/vim-fugitive', -- Git commands in nvim
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -556,7 +572,7 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'asmfmt', -- Used to format Assembly code
-        'clang-format', -- Used to format C code
+        'clangd', -- Used for C/C++/Objective-C
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -590,13 +606,14 @@ require('lazy').setup({
       },
     },
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         python = { "isort", "black" },
         -- C and C++ format
-        c = { "clang-format" },
+        -- c = { "clang-format" },
+        -- cpp = { "clang-format" },
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
@@ -726,9 +743,9 @@ require('lazy').setup({
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
             group_index = 0,
           },
-          { name = 'copilot' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
+          { name = 'copilot' },
           { name = 'path' },
         },
       }
@@ -747,7 +764,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- kanaagawa-{lotus, wave, dragon}
+      -- kanagawa-{lotus, wave, dragon}
       vim.cmd.colorscheme 'kanagawa-dragon'
 
       -- You can configure highlights by doing something like:
