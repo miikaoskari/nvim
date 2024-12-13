@@ -302,15 +302,6 @@ require('lazy').setup({
       -- See Configuration section for rest
     },
     keys = {
-      -- Show help actions with telescope
-      {
-        "<leader>ah",
-        function()
-          local actions = require("CopilotChat.actions")
-          require("CopilotChat.integrations.telescope").pick(actions.help_actions())
-        end,
-        desc = "[H]elp actions",
-      },
       -- Show prompts actions with telescope
       {
         "<leader>ap",
@@ -328,22 +319,13 @@ require('lazy').setup({
       },
       -- Code related commands
       { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "[E]xplain code" },
-      { "<leader>at", "<cmd>CopilotChatTests<cr>", desc = "Generate [t]ests" },
       { "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "[R]eview code" },
-      { "<leader>aR", "<cmd>CopilotChatRefactor<cr>", desc = "[R]efactor code" },
-      { "<leader>an", "<cmd>CopilotChatBetterNamings<cr>", desc = "Better [n]aming" },
       -- Chat with Copilot in visual mode
       {
         "<leader>av",
         ":CopilotChatVisual",
         mode = "x",
         desc = "Open in [v]ertical split",
-      },
-      {
-        "<leader>ax",
-        ":CopilotChatInline<cr>",
-        mode = "x",
-        desc = "Inline chat",
       },
       -- Custom input for CopilotChat
       {
@@ -355,28 +337,6 @@ require('lazy').setup({
           end
         end,
         desc = "Ask [i]nput",
-      },
-      -- Generate commit message based on the git diff
-      {
-        "<leader>am",
-        "<cmd>CopilotChatCommit<cr>",
-        desc = "Commit [m]essage for all changes",
-      },
-      {
-        "<leader>aM",
-        "<cmd>CopilotChatCommitStaged<cr>",
-        desc = "Generate commit [M]essage for staged changes",
-      },
-      -- Quick chat with Copilot
-      {
-        "<leader>aq",
-        function()
-          local input = vim.fn.input("Quick Chat: ")
-          if input ~= "" then
-            vim.cmd("CopilotChatBuffer " .. input)
-          end
-        end,
-        desc = "[Q]uick chat",
       },
       -- Debug
       { "<leader>ad", "<cmd>CopilotChatDebugInfo<cr>", desc = "[D]ebug Info" },
@@ -824,7 +784,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'python', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'cpp', 'python', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
