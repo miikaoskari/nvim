@@ -83,7 +83,3 @@ vim.keymap.set("n", "<leader>xi", ":DapStepInto<CR>", { desc = "Step Into" })
 vim.keymap.set("n", "<leader>xo", ":DapStepOver<CR>", { desc = "Step Over" })
 vim.keymap.set("n", "<leader>xr", ":DapRestartFrame<CR>", { desc = "Restart Frame" })
 
--- Copilot
-vim.keymap.set("i", "<C-j>", "copilot#Accept('<CR>')", { expr = true, silent = true, desc = "Accept Copilot Suggestion" })
-vim.keymap.set("i", "<C-x>", "copilot#Dismiss()", { expr = true, silent = true, desc = "Dismiss Copilot Suggestion" })
-
