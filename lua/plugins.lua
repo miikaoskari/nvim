@@ -3,7 +3,12 @@ return {
     { "folke/lazy.nvim" },
 
     -- Colorscheme
-    { "rebelot/kanagawa.nvim" },
+    {
+        "rebelot/kanagawa.nvim",
+        config = function()
+            vim.cmd("colorscheme kanagawa-wave")
+        end
+    },
 
     -- LSP Config
     {
