@@ -191,3 +191,4 @@ vim.keymap.set("n", "<leader>fe", ":Oil<CR>", { desc = "File Explorer (Oil)" })
 
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
+vim.opt.signcolumn = "yes"
