@@ -148,20 +148,26 @@ require("lazy").setup({
                     desc = "Buffer Local Keymaps (which-key)",
                 },
             },
-        }
+        },
+        { 'rebelot/kanagawa.nvim', name = 'kanagawa', priority = 1000 },
+        { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
     },
     -- Configure any other settings here. See the documentation for more details.
     -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "habamax" } },
+    install = { colorscheme = { "kanagawa" } },
     -- automatically check for plugin updates
     checker = { enabled = true },
 })
+
+vim.cmd.colorscheme "kanagawa"
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>fc', function() builtin.colorscheme({ enable_preview = true }) end, { desc = 'Telescope colorschemes' })
+vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = 'Telescope man pages'})
 
 -- **Navigation & Definitions**
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
@@ -179,7 +185,7 @@ vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Hel
 -- **Code Actions & Formatting**
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
-vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, { desc = "Format File" })
+-- vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, { desc = "Format File" })
 
 -- **Diagnostics (Errors & Warnings)**
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous Diagnostic" })
