@@ -28,7 +28,7 @@ require("lazy").setup({
         {
             "mason-org/mason-lspconfig.nvim",
             opts = {
-                ensure_installed = { "lua_ls", "clangd", "yamlls" },
+                ensure_installed = { "lua_ls", "clangd", "yamlls", "pylsp" },
             },
             dependencies = {
                 { "mason-org/mason.nvim", opts = {} },
