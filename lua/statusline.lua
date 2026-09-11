@@ -31,6 +31,17 @@ local function set_highlights()
     end
 end
 
+local fileformat_names = {
+    unix = "LF",
+    dos = "CRLF",
+    mac = "CR",
+}
+
+local function indent_info()
+    local width = vim.bo.shiftwidth > 0 and vim.bo.shiftwidth or vim.bo.tabstop
+    return (vim.bo.expandtab and "Spaces:" or "Tabs:") .. width
+end
+
 local function diagnostics()
     local counts = vim.diagnostic.count(0)
     local err = counts[vim.diagnostic.severity.ERROR] or 0
@@ -51,12 +62,13 @@ function M.render()
     local modified = vim.bo.modified and " [+]" or ""
     local readonly = vim.bo.readonly and " [RO]" or ""
     local filetype = vim.bo.filetype ~= "" and vim.bo.filetype or "none"
+    local fileformat = fileformat_names[vim.bo.fileformat] or vim.bo.fileformat
 
     return table.concat({
         "%#", hl, "# ", mode, " %* │ ", filename, modified, readonly,
         "%=",
         diagnostics(),
-        filetype, " │ %l:%c │ %p%% ",
+        filetype, " │ ", fileformat, " │ ", indent_info(), " │ %l:%c │ %p%% ",
     })
 end
 
