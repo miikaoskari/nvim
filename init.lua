@@ -15,7 +15,6 @@ vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.icons",   version = vim.version.range("*") },
     { src = "https://github.com/nvim-mini/mini.surround", version = vim.version.range("*") },
     { src = "https://github.com/nvim-mini/mini.pairs",    version = vim.version.range("*") },
-    { src = "https://github.com/rebelot/kanagawa.nvim" },
     { src = "https://github.com/folke/zen-mode.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
 })
@@ -100,6 +99,8 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<leader>fc', function() builtin.colorscheme({ enable_preview = true }) end, { desc = 'Telescope colorschemes' })
 vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = 'Telescope man pages'})
 
+vim.keymap.set('n', '<leader>zz', ":ZenMode<CR>")
+
 -- **Navigation & Definitions**
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
 vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
@@ -112,7 +113,7 @@ vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Hel
 -- **Code Actions & Formatting**
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
--- vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, { desc = "Format File" })
+vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, { desc = "Format File" })
 
 -- **Diagnostics (Errors & Warnings)**
 -- No gutter icons: keep the sign column for gitsigns only. Errors/warnings
