@@ -72,7 +72,7 @@ require("blink.cmp").setup {
 require("nvim-treesitter").install({
     "lua", "vim", "vimdoc", "query",
     "bash", "markdown", "markdown_inline", "json", "yaml",
-    "c", "cpp", "rust"
+    "c", "cpp", "rust", "doxygen"
 })
 
 vim.opt.foldlevelstart = 99 -- don't start files folded
