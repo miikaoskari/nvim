@@ -115,6 +115,25 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format { async = true } end, { desc = "Format File" })
 
+local function tabs_to_spaces_range(start_line, end_line)
+    vim.bo.expandtab = true
+    vim.cmd(string.format("%d,%dretab", start_line, end_line))
+end
+
+vim.keymap.set("n", "<leader>ts", function()
+    vim.bo.expandtab = true
+    vim.cmd("retab")
+end, { desc = "Tabs to Spaces (File)" })
+
+vim.keymap.set("v", "<leader>ts", function()
+    local start_line = vim.fn.line(".")
+    local end_line = vim.fn.line("v")
+    if start_line > end_line then
+        start_line, end_line = end_line, start_line
+    end
+    tabs_to_spaces_range(start_line, end_line)
+end, { desc = "Tabs to Spaces (Selection)" })
+
 -- **Diagnostics (Errors & Warnings)**
 -- No gutter icons: keep the sign column for gitsigns only. Errors/warnings
 -- still show via underline and virtual text.
@@ -155,3 +174,6 @@ require("gitui").setup()
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.signcolumn = "yes"
+
+vim.opt.list = true
+vim.opt.listchars = { tab = "> " }
