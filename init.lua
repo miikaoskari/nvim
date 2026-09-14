@@ -4,19 +4,20 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Plugins (managed by vim.pack, see :help vim.pack)
+-- Pinned to commit hashes (2026-09-14). Bump manually to update.
 vim.pack.add({
-    { src = "https://github.com/neovim/nvim-lspconfig" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-    { src = "https://github.com/nvim-telescope/telescope.nvim", version = vim.version.range("*") },
-    { src = "https://github.com/nvim-lua/plenary.nvim" },
-    { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
-    { src = "https://github.com/L3MON4D3/LuaSnip" },
-    { src = "https://github.com/stevearc/oil.nvim" },
-    { src = "https://github.com/nvim-mini/mini.icons",   version = vim.version.range("*") },
-    { src = "https://github.com/nvim-mini/mini.surround", version = vim.version.range("*") },
-    { src = "https://github.com/nvim-mini/mini.pairs",    version = vim.version.range("*") },
-    { src = "https://github.com/folke/zen-mode.nvim" },
-    { src = "https://github.com/lewis6991/gitsigns.nvim" },
+    { src = "https://github.com/neovim/nvim-lspconfig",          version = "ac9d2f7c4757db6320cab6697fe73e5e8adb2457" }, -- master
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "9a168f6357ed21c3a636e1727bc7d382abc451b8" }, -- main
+    { src = "https://github.com/nvim-telescope/telescope.nvim",  version = "5255aa27c422de944791318024167ad5d40aad20" }, -- v0.2.2
+    { src = "https://github.com/nvim-lua/plenary.nvim",          version = "74b06c6c75e4eeb3108ec01852001636d85a932b" }, -- master
+    { src = "https://github.com/saghen/blink.cmp",               version = "78336bc89ee5365633bcf754d93df01678b5c08f" }, -- v1.10.2
+    { src = "https://github.com/L3MON4D3/LuaSnip",               version = "0abc8f390b278c3b4aabc4c004ac8a088b65cf24" }, -- master
+    { src = "https://github.com/stevearc/oil.nvim",              version = "b73018b75affd13fa38e2fc94ef753b465f770d7" }, -- master
+    { src = "https://github.com/nvim-mini/mini.icons",           version = "e56797f90192d81f1fda02e662fc3e8e3d775027" }, -- v0.18.0
+    { src = "https://github.com/nvim-mini/mini.surround",        version = "580e4cb98c5900d9fe743865fb5a5b2178b4ab18" }, -- v0.18.0
+    { src = "https://github.com/nvim-mini/mini.pairs",           version = "4a014143fcb4e9df26198ccb3ecff3b9e77a048c" }, -- v0.18.0
+    { src = "https://github.com/folke/zen-mode.nvim",            version = "8564ce6d29ec7554eb9df578efa882d33b3c23a7" }, -- main
+    { src = "https://github.com/lewis6991/gitsigns.nvim",        version = "fd36f038e52ad8409fbf9926ae4a0a514cca04d8" }, -- main
 })
 
 vim.cmd.colorscheme("cforge")
@@ -39,7 +40,7 @@ require('gitsigns').setup {
 
 -- [[ LSP servers ]]
 -- Configs come from nvim-lspconfig; servers must be installed locally and on $PATH.
-vim.lsp.enable({ "clangd", "rust_analyzer" })
+vim.lsp.enable({ "clangd", "rust_analyzer", "ty" })
 
 -- [[ Snippet Engine ]]
 require("luasnip").setup {}
@@ -72,7 +73,7 @@ require("blink.cmp").setup {
 require("nvim-treesitter").install({
     "lua", "vim", "vimdoc", "query",
     "bash", "markdown", "markdown_inline", "json", "yaml",
-    "c", "cpp", "rust", "doxygen"
+    "c", "cpp", "rust", "doxygen", "python"
 })
 
 vim.opt.foldlevelstart = 99 -- don't start files folded
