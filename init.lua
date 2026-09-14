@@ -171,6 +171,7 @@ vim.keymap.set("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff This" })
 vim.keymap.set("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle Line Blame" })
 
 require("gitui").setup()
+require("terminal").setup()
 
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
