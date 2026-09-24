@@ -99,6 +99,13 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>fc', function() builtin.colorscheme({ enable_preview = true }) end, { desc = 'Telescope colorschemes' })
 vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = 'Telescope man pages'})
+-- Same as ff/fg but include hidden (dot) files; .git internals stay excluded
+vim.keymap.set('n', '<leader>fF', function()
+    builtin.find_files({ hidden = true, file_ignore_patterns = { '%.git/' } })
+end, { desc = 'Telescope find files (hidden)' })
+vim.keymap.set('n', '<leader>fG', function()
+    builtin.live_grep({ additional_args = { '--hidden', '--glob=!**/.git/*' } })
+end, { desc = 'Telescope live grep (hidden)' })
 
 vim.keymap.set('n', '<leader>zz', ":ZenMode<CR>")
 
@@ -145,6 +152,13 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show Diagn
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Show Diagnostics List" })
 
 vim.keymap.set("n", "<leader>fe", ":Oil<CR>", { desc = "File Explorer (Oil)" })
+vim.keymap.set("n", "<leader>fE", function()
+    local oil = require("oil")
+    if not require("oil.config").view_options.show_hidden then
+        oil.toggle_hidden()
+    end
+    oil.open()
+end, { desc = "File Explorer (Oil, show hidden)" })
 
 -- **Gitsigns (hunk nav/preview/stage)**
 local gitsigns = require("gitsigns")
